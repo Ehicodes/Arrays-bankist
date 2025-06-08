@@ -4,6 +4,7 @@
 /////////////////////////////////////////////////
 // BANKIST APP
 
+/*
 // Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
@@ -27,7 +28,7 @@ const account3 = {
 };
 
 const account4 = {
-  owner: 'Sarah Smith',
+  owner: 'Sarah Smith',_
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
@@ -72,5 +73,36 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
+*/
 /////////////////////////////////////////////////
+
+//ARRAY METHODS
+let arr = ['a', 'b', 'c', 'd', 'e'];
+//SLICE METHOD
+console.log(arr.slice(2));
+console.log(arr);
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-1));
+console.log(arr.slice(1, -2));
+console.log(arr.slice()); //creates a shallow copy of the arr
+console.log([...arr]); //spread operator
+
+//SPLICE METHOD
+// console.log(arr.splice(2))
+arr.splice(-1);
+arr.splice(1, 2);
+console.log(arr);
+
+//REVERSE
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse());
+console.log(arr2);
+
+//CONCAT
+const letters = arr.concat(arr2);
+console.log(letters);
+console.log([...arr, ...arr2]);
+
+//JOIN
+console.log(letters.join('- '));
