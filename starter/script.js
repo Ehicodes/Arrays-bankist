@@ -75,7 +75,7 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 */
 /////////////////////////////////////////////////
-
+/*
 //ARRAY METHODS
 let arr = ['a', 'b', 'c', 'd', 'e'];
 //SLICE METHOD
@@ -106,3 +106,25 @@ console.log([...arr, ...arr2]);
 
 //JOIN
 console.log(letters.join('- '));
+*/
+
+
+//LOOPING ARRAYS: FOR EACH
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+for (const [i, movement] of movements.entries()){
+  if (movement > 0) {
+    console.log(`Movement ${i + 1} You deposited ${movement}`)
+  } else{
+    console.log(`Movement ${i + 1} You withdrew ${Math.abs(movement)}`)
+  }
+}
+
+console.log('------FOR EACH-------------')
+movements.forEach(function(mov, i, arr) {
+   if (mov > 0) {
+    console.log(`Movement ${i + 1} You deposited ${mov}`)
+  } else{
+    console.log(`Movement ${i + 1} You withdrew ${Math.abs(mov)}`)
+  }
+})
