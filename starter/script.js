@@ -169,3 +169,40 @@ currenciesUnique.forEach(function(value, _, set) {
  console.log(`${value}`)
 })
  */
+
+//THE MAP METHOD
+
+const eurToUsd = 1.1;
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * eurToUsd;
+// });
+const movementsUSD = movements.map(mov => mov * eurToUsd);
+
+console.log(movements);
+console.log(movementsUSD);
+
+//since the map method returns a brand new array, let's store it to a variable
+
+// using a for of loop// w had to create an array seperately and also push the result in it.
+const movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor);
+
+//MORE MAP PRACTICES
+// movements.forEach(function(mov, i, arr) {
+//    if (mov > 0) {
+//     console.log(`Movement ${i + 1} You deposited ${mov}`)
+//   } else{
+//     console.log(`Movement ${i + 1} You withdrew ${Math.abs(mov)}`)
+//   }
+// })
+const movementDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+
+console.log(movementDescriptions);
