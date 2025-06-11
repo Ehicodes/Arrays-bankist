@@ -91,10 +91,8 @@ const createUsername = function (accs) {
       .join('');
   });
 };
-
 createUsername(accounts);
 console.log(accounts);
-
 console.log(account1);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -220,5 +218,29 @@ const movementDescriptions = movements.map(
       mov
     )}`
 );
-
 console.log(movementDescriptions);
+
+//FILTER METHOD
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+
+console.log(movements);
+console.log(deposits);
+
+//look at the difference
+const depositFor = [];
+for (const mov of movements) {
+  if (mov > 0) {
+    depositFor.push(mov);
+  }
+}
+console.log(depositFor);
+
+//FILTER METHOD
+const withdrawal = movements.filter(mov => mov < 0);
+//FOR OF LOOP
+const withdrawalFor = [];
+for (const mov of movements) if (mov < 0) withdrawalFor.push(mov);
+console.log(withdrawal);
+console.log(withdrawalFor);
