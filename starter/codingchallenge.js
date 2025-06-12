@@ -72,6 +72,9 @@ const calcAverageHumanAge = function (ages) {
     else return 16 + age * 4;
   });
   console.log(dogAgeInHumanYears);
+  //2
+  const adultDogsYears = dogAgeInHumanYears.filter(humanYear => humanYear > 18);
+  console.log(adultDogsYears);
 };
 console.log(ages);
 calcAverageHumanAge(ages);
