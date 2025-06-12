@@ -81,6 +81,14 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+//CALCULATING THE BALANCE OF MOVEMENTS
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
 //COMPUTING USERNAMES
 const createUsername = function (accs) {
   accs.forEach(function (acc) {
@@ -92,8 +100,7 @@ const createUsername = function (accs) {
   });
 };
 createUsername(accounts);
-console.log(accounts);
-console.log(account1);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -237,10 +244,30 @@ for (const mov of movements) {
 }
 console.log(depositFor);
 
-//FILTER METHOD
+//FILTER METHOD(little challenge)
 const withdrawal = movements.filter(mov => mov < 0);
 //FOR OF LOOP
 const withdrawalFor = [];
 for (const mov of movements) if (mov < 0) withdrawalFor.push(mov);
 console.log(withdrawal);
 console.log(withdrawalFor);
+
+//THE  REDUCE METHOD
+console.log(movements);
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+const balance = movements.reduce((acc, cur, i) => acc + cur);
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+//MAXIMUM VALUE OF THE MOVEMENTS ARRAY
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(max);
