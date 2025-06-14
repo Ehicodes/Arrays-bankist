@@ -84,11 +84,34 @@ displayMovements(account1.movements);
 //CALCULATING THE BALANCE OF MOVEMENTS
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance} €`;
 };
-
 calcDisplayBalance(account1.movements);
 
+//CHAINING METHODS IMPLEMENTATION
+const caclDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+caclDisplaySummary(account1.movements);
 //COMPUTING USERNAMES
 const createUsername = function (accs) {
   accs.forEach(function (acc) {
@@ -190,14 +213,14 @@ currenciesUnique.forEach(function(value, _, set) {
  console.log(`${value}`)
 })
  */
-
+/*
 //THE MAP METHOD
 
-const eurToUsd = 1.1;
+// const eurToUsd = 1.1;
 // const movementsUSD = movements.map(function (mov) {
 //   return mov * eurToUsd;
 // });
-const movementsUSD = movements.map(mov => mov * eurToUsd);
+// const movementsUSD = movements.map(mov => mov * eurToUsd);
 
 console.log(movements);
 console.log(movementsUSD);
@@ -271,3 +294,13 @@ const max = movements.reduce((acc, mov) => {
   else return mov;
 }, movements[0]);
 console.log(max);
+*/
+
+//CHAINING METHODS
+//PIPELINE
+const eurToUsd = 1.1;
+const totalDepositsinUSD = movements
+  .filter(mov => mov > 0)
+  .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsinUSD);
