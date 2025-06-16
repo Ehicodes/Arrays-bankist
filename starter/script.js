@@ -314,5 +314,10 @@ console.log(movements);
 console.log(firstWithdrawal);
 
 console.log(accounts);
-const account = accounts.find(acc => acc.owner === 'Jessica Davis');
-console.log(account);
+const desiredAccount = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(desiredAccount);
+
+//using a for of loop
+for (const account of accounts) {
+  if (account.owner === 'Jessica Davis') console.log(account);
+}
