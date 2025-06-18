@@ -165,6 +165,45 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+//IMPLEMENTING TRANSFERS
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcct = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    amount > 0 &&
+    receiverAcct &&
+    currentAccount.balance >= amount &&
+    receiverAcct?.username !== currentAccount.username
+  ) {
+    //doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcct.movements.push(amount);
+
+    //update UI
+    updateUI(currentAccount);
+  }
+});
+
+//LOAN OPERATION
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => amount / 10)) {
+    //add the movement
+    currentAccount.movements.push(amount);
+    //update UI
+    updateUI(currentAccount);
+
+    inputLoanAmount.value = '';
+  }
+});
+
 //CLOSE ACCOUNT OPERATION
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
@@ -189,29 +228,6 @@ btnClose.addEventListener('click', function (e) {
   }
 });
 
-//IMPLEMENTING TRANSFERS
-btnTransfer.addEventListener('click', function (e) {
-  e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
-  const receiverAcct = accounts.find(
-    acc => acc.username === inputTransferTo.value
-  );
-  inputTransferAmount.value = inputTransferTo.value = '';
-
-  if (
-    amount > 0 &&
-    receiverAcct &&
-    currentAccount.balance >= amount &&
-    receiverAcct?.username !== currentAccount.username
-  ) {
-    //doing the transfer
-    currentAccount.movements.push(-amount);
-    receiverAcct.movements.push(amount);
-
-    //update UI
-    updateUI(currentAccount);
-  }
-});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -411,3 +427,11 @@ for (const account of accounts) {
   if (account.owner === 'Jessica Davis') console.log(account);
 }
 */
+console.log(movements);
+//INCLUDE METHOD
+console.log(movements.includes(-130));
+
+//SOME METHOD (CONDITION)
+console.log(movements.some(mov => mov === -130));
+const anyDeposits = movements.some(mov => mov > 500);
+console.log(anyDeposits);
