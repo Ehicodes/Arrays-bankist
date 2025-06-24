@@ -434,24 +434,25 @@ for (const account of accounts) {
   if (account.owner === 'Jessica Davis') console.log(account);
 }
 */
-console.log(movements);
-//INCLUDE METHOD
-console.log(movements.includes(-130));
 
-//SOME METHOD (CONDITION)
-console.log(movements.some(mov => mov === -130));
-const anyDeposits = movements.some(mov => mov > 500);
-console.log(anyDeposits);
+// console.log(movements);
+// //INCLUDE METHOD
+// console.log(movements.includes(-130));
 
-//EVERY METHOD
-console.log(movements.every(mov => mov > 0));
-console.log(account4.movements.every(mov => mov > 0));
+// //SOME METHOD (CONDITION)
+// console.log(movements.some(mov => mov === -130));
+// const anyDeposits = movements.some(mov => mov > 500);
+// console.log(anyDeposits);
 
-//seperate callback
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// //EVERY METHOD
+// console.log(movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
+
+// //seperate callback
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
 
 /*
 //FLAT AND FLATMAPS
@@ -474,7 +475,7 @@ const averageBalance2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 console.log(averageBalance2);
 */
-
+/*
 //SORTING ARRAYS
 //strings
 const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
@@ -532,3 +533,59 @@ labelBalance.addEventListener('click', function () {
 
   console.log(movementsUI);
 });
+
+*/
+
+//ARRAY METHODS PRACTICE
+//  EXERCISE 1 (sum of deposits)
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+
+console.log(bankDepositSum);
+
+//EXERCISE 2 (number of deposits above 1k)
+const numDepositsAbove1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+
+console.log(numDepositsAbove1000);
+
+//Prefixed  ++ operator
+let a = 10;
+console.log(++a);
+console.log(a);
+
+//EXERCISE 3(Create a new object that will contain the sum of the deposits and of the withdrawals)
+
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+
+console.log(deposits, withdrawals);
+
+//EXERCISE 4. (A FUNCTION TO CONVERT ANY STRING TO A TITLE CASE)
+//this is a nice title => This is a Nice Title
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(' ');
+
+  return capitalize(titleCase);
+};
+console.log(convertTitleCase('this is a nice title'));
+console.log(convertTitleCase('this is a LONG title but not too long'));
+console.log(convertTitleCase('and here is anothet title with an EXAMPLE'));
