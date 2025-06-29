@@ -194,3 +194,12 @@ const recommendedFoodPortion = dogs.forEach(function (dog) {
 });
 
 console.log(dogs);
+
+//2
+const sarahsDog = dogs.find(dog => dog.owners[0] === 'Sarah');
+if (sarahsDog.curFood > sarahsDog.recommendedPortion) {
+  console.log(`${sarahsDog.owners[0]}'s dog is eating too much`);
+} else {
+  console.log(`${sarahsDog.owners[0]}'s dog is eating too little`);
+}
+console.log(sarahsDog);
