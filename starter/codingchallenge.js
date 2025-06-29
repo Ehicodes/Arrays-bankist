@@ -203,3 +203,14 @@ if (sarahsDog.curFood > sarahsDog.recommendedPortion) {
   console.log(`${sarahsDog.owners[0]}'s dog is eating too little`);
 }
 console.log(sarahsDog);
+
+//3
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recommendedPortion)
+  .flatMap(owner => owner.owners);
+
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recommendedPortion)
+  .flatMap(owner => owner.owners);
+
+console.log(ownersEatTooMuch, ownersEatTooLittle);
