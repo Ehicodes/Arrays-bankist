@@ -230,3 +230,11 @@ console.log(
       dog.curFood < dog.recommendedPortion * 1.1
   )
 );
+
+//7
+const dogsEatingOkAmt = dogs.filter(
+  dog =>
+    dog.curFood > dog.recommendedPortion * 0.9 &&
+    dog.curFood < dog.recommendedPortion * 1.1
+);
+console.log(dogsEatingOkAmt);
