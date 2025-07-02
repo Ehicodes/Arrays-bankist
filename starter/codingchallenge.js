@@ -221,3 +221,12 @@ console.log(`${ownersEatTooLittle.join(' and ')} dogs eat too little!`);
 
 //5
 console.log(dogs.some(dog => dog.curFood === dog.recommendedPortion));
+
+//6
+console.log(
+  dogs.some(
+    dog =>
+      dog.curFood > dog.recommendedPortion * 0.9 &&
+      dog.curFood < dog.recommendedPortion * 1.1
+  )
+);
