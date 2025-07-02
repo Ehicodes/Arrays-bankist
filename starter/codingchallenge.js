@@ -155,8 +155,7 @@ that is recommended (just true or false)
 (just true or false) 
 7. Create an array containing the dogs that are eating an okay amount of food (try 
 to reuse the condition used in 6.) 
-8. Create a shallow copy of the 'dogs' array and sort it by recommended food 
-portion in an ascending order (keep in mind that the portions are inside the 
+8. Create a shallow copy of the 'dogs' array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the 
 array's objects 
 �
 �) 
@@ -190,7 +189,7 @@ const dogs = [
 
 //1
 const recommendedFoodPortion = dogs.forEach(function (dog) {
-  dog.recommendedPortion = Math.floor(dog.weight ** 0.75 * 28);
+  dog.recommendedPortion = Math.trunc(dog.weight ** 0.75 * 28);
 });
 
 console.log(dogs);
@@ -216,25 +215,34 @@ const ownersEatTooLittle = dogs
 console.log(ownersEatTooMuch, ownersEatTooLittle);
 
 //4
-console.log(`${ownersEatTooMuch.join(' and ')} dogs eat too much!`);
-console.log(`${ownersEatTooLittle.join(' and ')} dogs eat too little!`);
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
 
 //5
 console.log(dogs.some(dog => dog.curFood === dog.recommendedPortion));
 
 //6
-console.log(
-  dogs.some(
-    dog =>
-      dog.curFood > dog.recommendedPortion * 0.9 &&
-      dog.curFood < dog.recommendedPortion * 1.1
-  )
-);
+// console.log(
+//   dogs.some(
+//     dog =>
+//       dog.curFood > dog.recommendedPortion * 0.9 &&
+//       dog.curFood < dog.recommendedPortion * 1.1
+//   )
+// );
+const checkEatingOkay = dog =>
+  dog.curFood > dog.recommendedPortion * 0.9 &&
+  dog.curFood < dog.recommendedPortion * 1.1;
 
 //7
-const dogsEatingOkAmt = dogs.filter(
-  dog =>
-    dog.curFood > dog.recommendedPortion * 0.9 &&
-    dog.curFood < dog.recommendedPortion * 1.1
-);
-console.log(dogsEatingOkAmt);
+// const dogsEatingOkAmt = dogs.filter(
+//   dog =>
+//     dog.curFood > dog.recommendedPortion * 0.9 &&
+//     dog.curFood < dog.recommendedPortion * 1.1
+// );
+console.log(dogs.filter(checkEatingOkay));
+
+//8
+const dogsSortedShallowCopy = dogs
+  .slice()
+  .sort((a, b) => a.recommendedPortion - b.recommendedPortion);
+console.log(dogsSortedShallowCopy);
